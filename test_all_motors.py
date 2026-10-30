@@ -1,11 +1,11 @@
 from gpiozero import Motor
 from time import sleep
 
-# Configure motors based on your exact pin mapping
+# Configure motors (right motor pins are swapped to invert direction)
 left_motor = Motor(forward=13, backward=19)
-right_motor = Motor(forward=12, backward=18)
+right_motor = Motor(forward=18, backward=12)  # Swapped from (12, 18) to invert
 
-print("Starting comprehensive drivetrain test...")
+print("Starting drivetrain test with inverted right motor...")
 
 # --- 1. Test Left Motor Individually ---
 print("\n--- Testing Left Motor ---")
@@ -23,7 +23,7 @@ sleep(1)
 
 # --- 2. Test Right Motor Individually ---
 print("\n--- Testing Right Motor ---")
-print("Right motor FORWARD at 30% speed...")
+print("Right motor FORWARD at 30% speed (now inverted)...")
 right_motor.forward(0.3)
 sleep(2)
 right_motor.stop()
@@ -50,4 +50,4 @@ sleep(3)
 # Stop completely
 left_motor.stop()
 right_motor.stop()
-print("\nDrivetrain test complete! All routines finished successfully.")
+print("\nTest complete!")
